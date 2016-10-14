@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+    <item
+        android:id="@+id/menu_sair"
+        android:icon="@drawable/menu_sair"
+        android:title="Sair" />
+    <item
+        android:id="@+id/menu_preferencias"
+        android:icon="@drawable/menu_preferencias"
+        android:title="Preferencias" />
+
+    <item
+        android:id="@+id/menu_sobre"
+        android:icon="@drawable/menu_sobre"
+        android:title="Sobre" />
+
+</menu>

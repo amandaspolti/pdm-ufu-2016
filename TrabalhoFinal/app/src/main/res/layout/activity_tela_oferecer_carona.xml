@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/brackg"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+
+    tools:context="com.example.amandaspolti.trabalhofinal.TelaOferecerCarona">
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Oferecendo Carona"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="25dp" />
+
+    <TableRow>
+
+
+        <TextView android:text="Origem" />
+
+        <Spinner android:id="@+id/origem"></Spinner>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="Destino" />
+        <Spinner
+            android:id="@+id/destino">
+        </Spinner>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="Hora" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/horaOferece"
+            android:onClick="showTimePickerDialog"
+            android:layout_column="1" />
+        <!--<TimePicker></TimePicker>-->
+    </TableRow>
+    <TableRow>
+        <TextView android:text="Lugares" />
+        <EditText />
+        <!--<NumberPicker></NumberPicker>-->
+    </TableRow>
+
+    <TableRow>
+
+        <TextView android:text="Valor" />
+
+        <EditText />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView android:text="Disponibilizar numero" />
+
+        <ToggleButton />
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></TableRow>
+
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_column="0"
+        android:layout_marginTop="15dp"
+        android:onClick="voltarTelaPrincipal"
+        android:text="Voltar" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="1"
+        android:onClick="cadastroCarona"
+        android:text="OK" />
+
+
+</TableLayout>
+
