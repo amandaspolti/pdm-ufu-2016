@@ -1,6 +1,7 @@
 package com.simpleware.jonathan.listviewexample;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +25,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> data = new ArrayList<String>();
-    private ArrayList<ItemListView> itens = new ArrayList<ItemListView>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,31 +41,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void createListView(){
-        itens = new ArrayList<ItemListView>();
-        ItemListView item1 = new ItemListView("Guilherme Biff", R.drawable.facil);
-        ItemListView item2 = new ItemListView("Lucas Volgarini", R.drawable.media);
-        ItemListView item3 = new ItemListView("Eduardo Ricoldi", R.drawable.hard);
-
-        itens.add(item1);
-        itens.add(item2);
-        itens.add(item3);
-
-
-        //Cria o adapter
-        adapterListView = new MyListAdaper(this, itens);
-
-        //Define o Adapter
-        listView.setAdapter(adapterListView);
-        //Cor quando a lista é selecionada para ralagem.
-        listView.setCacheColorHint(Color.TRANSPARENT);
-
-
-    }
-
     private void generateListContent() {
-        for(int i = 0; i < 55; i++) {
-            data.add("This is row number " + i);
+        for(int i = 0; i < 3; i++) {
+            if(i==0){
+                data.add("Fácil");
+            }
+            else{
+                if(i==1){
+                    data.add("Médio");
+                }
+                else{
+                    data.add("Difícil");
+                }
+            }
         }
     }
 
@@ -94,10 +82,12 @@ public class MainActivity extends AppCompatActivity {
     private class MyListAdaper extends ArrayAdapter<String> {
         private int layout;
         private List<String> mObjects;
+
         private MyListAdaper(Context context, int resource, List<String> objects) {
             super(context, resource, objects);
             mObjects = objects;
             layout = resource;
+
         }
 
         @Override
@@ -110,6 +100,19 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.thumbnail = (ImageView) convertView.findViewById(R.id.list_item_thumbnail);
                 viewHolder.title = (TextView) convertView.findViewById(R.id.list_item_text);
                 viewHolder.button = (Button) convertView.findViewById(R.id.list_item_btn);
+                if(position == 0){
+                    viewHolder.thumbnail.setImageResource(R.drawable.facil);
+
+                }else{
+                    if(position == 1) {
+                        viewHolder.thumbnail.setImageResource(R.drawable.media);
+
+                    }else{
+                        viewHolder.thumbnail.setImageResource(R.drawable.hard);
+
+                    }
+                }
+
                 convertView.setTag(viewHolder);
             }
              mainViewholder = (ViewHolder) convertView.getTag();
@@ -120,9 +123,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
              mainViewholder.title.setText(getItem(position));
-            ItemListView item = itens.get(position);
-            mainViewholder.title.setText(item.getTexto());
-            mainViewholder.thumbnail.setImageResource(item.getIconeRid());
 
             return convertView;
         }
