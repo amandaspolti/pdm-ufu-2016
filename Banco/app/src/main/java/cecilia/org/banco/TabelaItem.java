@@ -14,14 +14,15 @@ public class TabelaItem extends SQLiteOpenHelper {
     public static final String COLUMN_ITEM = "item";
     public static final String COLUMN_DUEDATE = "dueDate";
     public static final String COLUMN_STATUS = "status";
+    public static final String COLUMN_NIVEL = "nivel";
 
 
     public static final String DATABASE_NAME = " itens.db";
     public static final int DATABASE_VERSION = 1;
 
     private static String SQL = "CREATE TABLE " + TABLE_ITENS + " ( " + COLUMN_ID +
-            " integer primary key autoincrement, " + COLUMN_ITEM + " text not null, "
-            + COLUMN_DUEDATE + " blob, " + COLUMN_STATUS + " BOOLEAN )";
+            " integer primary key autoincrement, " + COLUMN_ITEM + " text not null, " + COLUMN_NIVEL
+            + " tinyint not null, " + COLUMN_DUEDATE + " blob, " + COLUMN_STATUS + " BOOLEAN )";
 
     public TabelaItem(Context c) {
         super(c, DATABASE_NAME, null, DATABASE_VERSION);

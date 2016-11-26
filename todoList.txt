@@ -1,7 +1,12 @@
 - shared preferences -> toogle button (som e vibrar)
-- banco de dados -> item (status, texto, data de prazo, nivel)
+- banco de dados -> item (status, texto, data de prazo, nivel) OK
 - list view personalizado -> (item, nivel, botao de confirmacao)
 - telas (cadastro item, cadastro cara, login, list view)
 - tela cadastro (check box termos de uso)
 - tela de login (check box manter senha e login?) (autocomplete do login)
 - service (data de prazo == hoje)
+
+
+--------------------------------- dev
+
+- testar codigo (banco)
