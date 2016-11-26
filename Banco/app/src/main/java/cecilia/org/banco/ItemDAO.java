@@ -14,9 +14,8 @@ import java.util.List;
  */
 public class ItemDAO {
     private SQLiteDatabase db;
-    private String[] columns = {TabelaItem.COLUMN_ID,
-            TabelaItem.COLUMN_ITEM, TabelaItem.COLUMN_DUEDATE,
-            TabelaItem.COLUMN_STATUS};
+    private String[] columns = {TabelaItem.COLUMN_ID, TabelaItem.COLUMN_ITEM,
+            TabelaItem.COLUMN_NIVEL, TabelaItem.COLUMN_DUEDATE, TabelaItem.COLUMN_STATUS,};
 
     private TabelaItem sqLiteOpenHelper;
 
@@ -36,11 +35,13 @@ public class ItemDAO {
     public Item create(String item, String dueDate, boolean status) {
         ContentValues values = new ContentValues();
 
+
+
+        values.put(TabelaItem.COLUMN_ITEM, item);
         if (dueDate != null) {
             values.put(TabelaItem.COLUMN_DUEDATE, dueDate);
         }
-
-        values.put(TabelaItem.COLUMN_ITEM, item);
+        values.put(TabelaItem.COLUMN_NIVEL, status);
         values.put(TabelaItem.COLUMN_STATUS, status);
 
 
@@ -56,9 +57,11 @@ public class ItemDAO {
         Item newItem = new Item();
         newItem.set_id(c.getLong(0));
         newItem.setText(c.getString(1));
-        newItem.setDueDate(c.getBlob(2));
-        newItem.setStatus(c.getInt(3));
+        newItem.setNivel(c.getInt(2));
+        newItem.setDueDate(c.getBlob(3));
+        newItem.setStatus(c.getInt(4));
         c.close();
+
         return newItem;
     }
 
@@ -78,8 +81,9 @@ public class ItemDAO {
             Item newItem = new Item();
             newItem.set_id(c.getLong(0));
             newItem.setText(c.getString(1));
-            newItem.setDueDate(c.getBlob(2));
-            newItem.setStatus(c.getInt(3));
+            newItem.setNivel(c.getInt(2));
+            newItem.setDueDate(c.getBlob(3));
+            newItem.setStatus(c.getInt(4));
             itens.add(newItem);
             c.moveToNext();
         }

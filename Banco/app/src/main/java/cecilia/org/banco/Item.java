@@ -8,6 +8,7 @@ public class Item {
     private boolean status;
     private String text;
     private byte[] dueDate;
+    private byte nivel; //1 facil 2 medio 3 dificil
 
 
     public byte[] getDueDate() {
@@ -43,4 +44,11 @@ public class Item {
         this._id = _id;
     }
 
+    public byte getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = Byte.parseByte(Integer.toString(nivel));
+    }
 }
