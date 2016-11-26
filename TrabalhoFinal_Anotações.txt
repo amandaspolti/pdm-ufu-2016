@@ -1,3 +1,0 @@
-**Como redimendionar o datepicker -> ARRUMAR O DATE / TIME PICKER
-**Adicionar submenu na segunda tela principal -> BOTAR PRA FUNCIONAR
-autocomplete text view para funcoinar
