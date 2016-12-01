@@ -3,6 +3,7 @@ package com.example.amandaspolti.todoapp;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -25,6 +26,7 @@ public class TelaCadastro extends AppCompatActivity {
     private CheckBox mCheckboxView;
     private View mProgressView;
     private View mCadastroFormView;
+    private Button volta_principal;
 
 
     @Override
@@ -36,11 +38,21 @@ public class TelaCadastro extends AppCompatActivity {
         mPasswordView = (EditText) findViewById(R.id.cadastro_password);
         mCheckboxView = (CheckBox) findViewById(R.id.cadastro_checkbox);
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.cadastro_button);
+        Button mEmailSignInButton = (Button) findViewById(R.id.cadastro_usuario_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptCadastrar();
+            }
+        });
+
+        volta_principal = (Button) findViewById(R.id.voltar_login_button);
+        volta_principal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TelaCadastro.this, TelaLogin.class);
+                startActivity(i);
+
             }
         });
 

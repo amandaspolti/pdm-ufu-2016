@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">TODO List !</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Preferencias</string>
+    <string name="action_sobre">Sobre</string>
+    <string name="action_sair">Sair</string>
     <string name="title_activity_tela_cadastro_item">Novo Item</string>
     <!-- Strings related to login -->
     <string name="hint_item">Descrição</string>

@@ -3,6 +3,7 @@ package com.example.amandaspolti.todoapp;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 
@@ -13,10 +14,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.*;
 
 public class TelaCadastroItem extends AppCompatActivity {
 
@@ -29,6 +27,7 @@ public class TelaCadastroItem extends AppCompatActivity {
     private View mCadastroItemFormView;
     RadioButton mRadioFacil, mRadioMedio, mRadioDificil;
     RadioGroup mRadioGroup;
+    Button voltar_itens;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +48,17 @@ public class TelaCadastroItem extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cadastrarItem();
+            }
+        });
+
+        voltar_itens = (Button) findViewById(R.id.voltar_itens_button);
+        voltar_itens.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TelaCadastroItem.this, ListView.class);
+                startActivity(i);
+//                Toast.makeText(ListView.this, "Muda Tela", Toast.LENGTH_LONG).show();
+
             }
         });
 

@@ -25,6 +25,7 @@ public class ListView extends AppCompatActivity {
     private ArrayList<String> data = new ArrayList<String>();
     private ImageButton adcItem;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +50,8 @@ public class ListView extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     private void generateListContent() {
@@ -82,8 +85,16 @@ public class ListView extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_preferencias) {
+            Intent i = new Intent(ListView.this, TelaConfig.class);
+            startActivity(i);
             return true;
+        }else if(id == R.id.action_sobre){
+            Intent i = new Intent(ListView.this, TelaSobre.class);
+            startActivity(i);
+            return true;
+        }else if(id == R.id.action_sair){
+            Toast.makeText(this, "Sair da Aplicacao", Toast.LENGTH_LONG).show();
         }
 
         return super.onOptionsItemSelected(item);

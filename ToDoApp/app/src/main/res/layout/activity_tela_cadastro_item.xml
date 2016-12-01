@@ -112,14 +112,32 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <Button
-                android:id="@+id/cadastro_item_button"
-                style="?android:textAppearanceSmall"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Salvar"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/voltar_itens_button"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight=".50"
+                    android:text="Voltar"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/cadastro_item_button"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight=".50"
+                    android:text="Salvar"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

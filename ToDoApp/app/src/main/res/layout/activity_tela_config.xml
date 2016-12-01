@@ -30,5 +30,30 @@
 
 
  </TableLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/volta_conf"
+            style="?android:textAppearanceSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight=".50"
+            android:text="Voltar"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/salva_conf"
+            style="?android:textAppearanceSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight=".50"
+            android:text="Salvar"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -46,6 +46,7 @@ public class TelaLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_login);
 
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.login_email);
         populateAutoComplete();
@@ -85,7 +86,6 @@ public class TelaLogin extends AppCompatActivity {
 
         mEmailView.setAdapter(adapter);
     }
-
 
     private void attemptLogin() {
         if (mAuthTask != null) {
