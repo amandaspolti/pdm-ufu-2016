@@ -29,7 +29,6 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
     private View mProgressView;
     private View mCadastroItemFormView;
     RadioButton mRadioFacil, mRadioMedio, mRadioDificil;
-    RadioGroup mRadioGroup;
     Button voltar_itens;
 
     @Override
@@ -49,18 +48,10 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
         mEditData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               showDatePickerDialog(v);
+                showDatePickerDialog(v);
 
             }
         });
-
-//        mEditData.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent motionEvent) {
-//
-//                return showDatePickerDialog(view);
-//            }
-//        });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.cadastro_item_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
@@ -76,8 +67,6 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
             public void onClick(View v) {
                 Intent i = new Intent(TelaCadastroItem.this, ListView.class);
                 startActivity(i);
-//                Toast.makeText(ListView.this, "Muda Tela", Toast.LENGTH_LONG).show();
-
             }
         });
 
@@ -95,10 +84,8 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
         mEditData.setError(null);
         mRadioFacil.setError(null);
 
-        // Store values at the time of the login attempt.
         String item_text = mEditItem.getText().toString();
         String dueDate = mEditData.getText().toString();
-
 
 
         boolean cancel = false;
@@ -137,9 +124,6 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
@@ -161,8 +145,6 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
                 }
             });
         } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mCadastroItemFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
@@ -189,6 +171,8 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
                 return false;
             }
 
+            ItemDAO itemdao = ItemDAO.getInstance(TelaCadastroItem.this);
+            itemdao.create(mText, mDueDate, mNivel);
             return true;
         }
 
@@ -218,33 +202,11 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
         return true;
 
     }
+
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        //do some stuff for example write on log and update TextField on activity
-        Log.w("DatePicker","Date = " + year);
-        ((EditText) findViewById(R.id.cadastro_item_data)).setText(day + "/" + month + "/"+year);
+        Log.w("DatePicker", "Date = " + year);
+        ((EditText) findViewById(R.id.cadastro_item_data)).setText(day + "/" + month + "/" + year);
     }
 
-
-
-    public void onBtnCadastrarItem(View view) {
-
-
-
-        //TODO Como pegar data e colocar em no banco
-
-        //  dueDate = (byte) findViewById(R.id.due_date);
-//
-//        Item itemo = item_DAO.create(item.getText().toString(), data.getText().toString(), nivel);
-//        objeto.setText(item.getText().toString());
-//        objeto.setNivel(nivel);
-        //objeto.setDueDate(data.getText());
-//        objeto.setStatus(0);
-
-        // Toast.makeText(this, item.getText().toString(), Toast.LENGTH_LONG).show();
-        //     Item objeto = new Item(item.getText().toString(), nivel);
-        //   item_DAO.save(objeto);
-        //     Toast.makeText(this, "Item Cadastrado com Sucesso", Toast.LENGTH_SHORT).show();
-
-    }
 }
 

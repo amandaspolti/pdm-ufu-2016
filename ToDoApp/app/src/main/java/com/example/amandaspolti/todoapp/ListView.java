@@ -31,12 +31,15 @@ public class ListView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_com_tasks);
         android.widget.ListView lv = (android.widget.ListView) findViewById(R.id.listview);
-        generateListContent();
-        lv.setAdapter(new MyListAdaper(this, R.layout.list_item, data));
+
+        ItemDAO itemdao = ItemDAO.getInstance(ListView.this);
+        lv.setAdapter(new MyListAdaper(this, R.layout.list_item, itemdao.getAll()));
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ListView.this, "List item was clicked at " + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListView.this, "List item was clicked at " + position,
+                        Toast.LENGTH_SHORT).show();
+                //TODO edittar item
             }
         });
 
@@ -46,26 +49,10 @@ public class ListView extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(ListView.this, TelaCadastroItem.class);
                 startActivity(i);
-//                Toast.makeText(ListView.this, "Muda Tela", Toast.LENGTH_LONG).show();
-
             }
         });
 
 
-    }
-
-    private void generateListContent() {
-        for (int i = 0; i < 3; i++) {
-            if (i == 0) {
-                data.add("Fácil");
-            } else {
-                if (i == 1) {
-                    data.add("Médio");
-                } else {
-                    data.add("Difícil");
-                }
-            }
-        }
     }
 
     @Override
@@ -77,12 +64,8 @@ public class ListView extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_preferencias) {
             Intent i = new Intent(ListView.this, TelaConfig.class);
             startActivity(i);
@@ -104,12 +87,12 @@ public class ListView extends AppCompatActivity {
     private class MyListAdaper extends ArrayAdapter<String> {
         private int layout;
         private List<String> mObjects;
+        private Item item;
 
         private MyListAdaper(Context context, int resource, List<String> objects) {
             super(context, resource, objects);
             mObjects = objects;
             layout = resource;
-
         }
 
         @Override
@@ -122,35 +105,53 @@ public class ListView extends AppCompatActivity {
                 viewHolder.thumbnail = (ImageView) convertView.findViewById(R.id.list_item_thumbnail);
                 viewHolder.title = (TextView) convertView.findViewById(R.id.list_item_text);
                 viewHolder.button = (Button) convertView.findViewById(R.id.list_item_btn);
-                if (position == 0) {
-                    viewHolder.thumbnail.setImageResource(R.drawable.easy);
-                } else {
-                    if (position == 1) {
-                        viewHolder.thumbnail.setImageResource(R.drawable.medium);
-
-                    } else {
-                        viewHolder.thumbnail.setImageResource(R.drawable.hard);
-
-                    }
-                }
-
                 convertView.setTag(viewHolder);
             }
+
+            final String[] mDadosItem = getItem(position).split("\\|\\|");
+
+            item = new Item(mDadosItem[0], mDadosItem[1], mDadosItem[2], mDadosItem[3],
+                    mDadosItem[4]);
+            final ItemDAO itemdao = ItemDAO.getInstance(ListView.this);
+
             mainViewholder = (ViewHolder) convertView.getTag();
-            mainViewholder.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(getContext(), "Button was clicked for list item " + position, Toast.LENGTH_SHORT).show();
-                }
-            });
-            mainViewholder.title.setText(getItem(position));
+
+            if (item.getNivel() == 1) {
+                mainViewholder.thumbnail.setImageResource(R.drawable.easy);
+            } else if (item.getNivel() == 2) {
+                mainViewholder.thumbnail.setImageResource(R.drawable.medium);
+            } else {
+                mainViewholder.thumbnail.setImageResource(R.drawable.hard);
+            }
+
+            if (item.isDone()) { //TODO fazer funcionar
+                mainViewholder.button.setText("Apagar?");
+                mainViewholder.button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        itemdao.delete(item);
+                    }
+                });
+                remove(getItem(position));
+            } else {
+                mainViewholder.button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        item.setDone(1);
+                        itemdao.update(item);
+                    }
+                });
+                if (item.isDone())
+                    mainViewholder.button.setText("Apagar?");
+            }
+
+            mainViewholder.title.setText(item.getText());
 
             return convertView;
         }
     }
 
     public class ViewHolder {
-
         ImageView thumbnail;
         TextView title;
         Button button;
