@@ -8,44 +8,39 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.amandaspolti.todoapp.TelaLogin">
+    tools:context="com.example.amandaspolti.todoapp.TelaCadastro">
 
-    <!-- Login progress -->
     <ProgressBar
-        android:id="@+id/login_progress"
+        android:id="@+id/cadastro_progress"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:gravity="center_horizontal"
-        android:text="Seja bem-vindo! Por favor, digite os seus dados." />
-
     <ScrollView
-        android:id="@+id/login_form"
+        android:id="@+id/cadastro_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/email_login_form"
+            android:id="@+id/email_cadastro_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <AutoCompleteTextView
-                    android:id="@+id/login_email"
+                <EditText
+                    android:id="@+id/cadastro_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_email"
+                    android:imeActionLabel="@string/hint_email"
+                    android:imeOptions="actionUnspecified"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -57,11 +52,11 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/login_password"
+                    android:id="@+id/cadastro_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_password"
-                    android:imeActionLabel="Senha"
+                    android:imeActionLabel="@string/hint_password"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
@@ -69,31 +64,26 @@
 
             </android.support.design.widget.TextInputLayout>
 
+
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/cadastro_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Concordo com os Termos de Uso"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/cadastro_button"
+                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/login_button"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight=".50"
-                    android:text="Logar"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/login_cadastro_button"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight=".50"
-                    android:text="Cadastrar"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                android:layout_marginTop="16dp"
+                android:text="Cadastrar"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
