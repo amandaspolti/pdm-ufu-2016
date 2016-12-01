@@ -10,3 +10,12 @@
 --------------------------------- dev
 
 - testar codigo (banco)
+- Clicar duas vezes para abrir Date Picker
+- Setar EditText com a data do Date Picker
+
+
+--------Feito - Falta Ajustes de Design --------
+-Tela Cadastro Usuario
+- Tela Cadastro Item 
+- Tela Login
+- 

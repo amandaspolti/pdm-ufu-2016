@@ -8,15 +8,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_tela_cadastro">
+        <activity android:name=".TelaComTasks">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TelaCadastro" />
-        <activity android:name=".TelaCadastroItem"></activity>
+        <activity android:name=".TelaCadastroItem" />
+        <!--<activity android:name=".TelaComTasks"></activity>-->
     </application>
 
 </manifest>
