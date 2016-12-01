@@ -3,6 +3,7 @@ package com.example.amandaspolti.todoapp;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -12,11 +13,12 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
-public class TelaCadastroItem extends AppCompatActivity {
+public class TelaCadastroItem extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private ItemCadastroTask mAuthTask = null;
 
@@ -42,6 +44,14 @@ public class TelaCadastroItem extends AppCompatActivity {
         mRadioMedio = (RadioButton) findViewById(R.id.radioMedio);
         mRadioDificil = (RadioButton) findViewById(R.id.radioHard);
 
+        mEditData = (EditText) findViewById(R.id.cadastro_item_data);
+        mEditData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               showDatePickerDialog(v);
+
+            }
+        });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.cadastro_item_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
@@ -196,10 +206,14 @@ public class TelaCadastroItem extends AppCompatActivity {
     public /*String*/ void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
-//        DatePickerFragment dt  = (DatePickerFragment) newFragment;
-//        return dt.dataUser;
 
     }
+    public void onDateSet(DatePicker view, int year, int month, int day) {
+        //do some stuff for example write on log and update TextField on activity
+        Log.w("DatePicker","Date = " + year);
+        ((EditText) findViewById(R.id.cadastro_item_data)).setText(day + "/" + month + "/"+year);
+    }
+
 
 
     public void onBtnCadastrarItem(View view) {

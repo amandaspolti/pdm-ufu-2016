@@ -2,8 +2,8 @@
 - banco de dados -> item (status, texto, data de prazo, nivel) OK
 - list view personalizado -> (item, nivel, botao de confirmacao) OK
 - telas (cadastro item, cadastro cara, login, list view)
-- tela cadastro (check box termos de uso)
-- tela de login (check box manter senha e login?) (autocomplete do login)
+- tela cadastro (check box termos de uso) OK
+- tela de login (check box manter senha e login?) (autocomplete do login) OK
 - service (data de prazo == hoje)
 
 
@@ -12,6 +12,11 @@
 - testar codigo (banco)
 - Clicar duas vezes para abrir Date Picker
 - Setar EditText com a data do Date Picker
+- Acao para Sair da Aplicacao
+- Service para mandar notificacao
+- Salvar tela Configuracoes
+- Arrumar Design
+-Popular ListView
 
 
 --------Feito - Falta Ajustes de Design --------
