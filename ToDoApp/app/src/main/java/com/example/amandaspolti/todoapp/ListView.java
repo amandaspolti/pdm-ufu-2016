@@ -142,6 +142,7 @@ public class ListView extends AppCompatActivity {
                 mainViewholder.thumbnail.setImageResource(R.drawable.hard);
             }
 
+
             if (item.isDone()) { //TODO fazer funcionar
                 mainViewholder.button.setText("Apagar?");
                 mainViewholder.button.setOnClickListener(new View.OnClickListener() {
