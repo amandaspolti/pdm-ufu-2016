@@ -18,10 +18,19 @@ public class ItemDAO {
 
     private TabelaItem mTIHelper;
 
-    public ItemDAO(Context c) {
+    private static ItemDAO ourInstance;
+
+    public static ItemDAO getInstance(Context context) {
+        if (ourInstance == null)
+            ourInstance = new ItemDAO(context);
+        return ourInstance;
+    }
+
+    private ItemDAO(Context c) {
         mTIHelper = TabelaItem.getInstance(c);
         db = mTIHelper.open();
     }
+
 
     public long create(String text, String dueDate, int nivel) {
         ContentValues values = new ContentValues();
@@ -42,19 +51,19 @@ public class ItemDAO {
                 TabelaItem.COLUMN_ID + '=' + id, null);
     }
 
-    public List<Item> getAll() {
-        List<Item> itens = new ArrayList<>();
+    public List<String> getAll() {
+        List<String> itens = new ArrayList<>();
         Cursor c = db.query(TabelaItem.TABLE_ITENS, columns,
                 null, null, null, null, null);
         c.moveToFirst();
         while (!c.isAfterLast()) {
-            Item newItem = new Item();
-            newItem.set_id(c.getLong(0));
-            newItem.setText(c.getString(1));
-            newItem.setNivel(c.getInt(2));
-            newItem.setDueDate(c.getString(3));
-            newItem.setDone(c.getInt(4));
-            itens.add(newItem);
+            String data = c.getString(3);
+            data = data.equals("") ? "null" : data;
+
+            String item = Long.toString(c.getLong(0)) + "||" + c.getString(1) + "||" + c.getInt(2)
+                    + "||" + data + "||" + c.getInt(4);
+
+            itens.add(item);
             c.moveToNext();
         }
         c.close();

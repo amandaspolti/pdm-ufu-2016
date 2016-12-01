@@ -159,7 +159,7 @@ public class TelaCadastroItem extends AppCompatActivity {
                 return false;
             }
 
-            ItemDAO itemdao = new ItemDAO(TelaCadastroItem.this);
+            ItemDAO itemdao = ItemDAO.getInstance(TelaCadastroItem.this);
             long id = itemdao.create(mText, mDueDate, mNivel);
             return true;
         }

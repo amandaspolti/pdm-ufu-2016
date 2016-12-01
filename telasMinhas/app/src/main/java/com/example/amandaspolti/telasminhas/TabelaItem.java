@@ -22,7 +22,7 @@ public class TabelaItem extends SQLiteOpenHelper {
 
     private static TabelaItem ourInstance;
 
-    public static synchronized TabelaItem getInstance(Context context) {
+    public static TabelaItem getInstance(Context context) {
         if (ourInstance == null)
             ourInstance = new TabelaItem(context);
         return ourInstance;
@@ -51,11 +51,11 @@ public class TabelaItem extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
     }
 
-    public SQLiteDatabase open(){
+    public SQLiteDatabase open() {
         return ourInstance.getWritableDatabase();
     }
 
-    public void close(){
+    public void close() {
         ourInstance.close();
     }
 

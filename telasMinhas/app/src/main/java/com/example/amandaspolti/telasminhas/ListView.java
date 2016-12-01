@@ -20,37 +20,22 @@ import java.util.List;
 
 public class ListView extends AppCompatActivity {
 
-    private ArrayList<String> data = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_com_tasks);
         android.widget.ListView lv = (android.widget.ListView) findViewById(R.id.listview);
-        generateListContent();
-        lv.setAdapter(new MyListAdaper(this, R.layout.list_item, data));
+
+        ItemDAO itemdao = ItemDAO.getInstance(ListView.this);
+        lv.setAdapter(new MyListAdaper(this, R.layout.list_item, itemdao.getAll()));
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(ListView.this, "List item was clicked at " + position, Toast.LENGTH_SHORT).show();
+                //TODO editar item
             }
         });
-    }
-
-    private void generateListContent() {
-        for(int i = 0; i < 3; i++) {
-            if(i==0){
-                data.add("Fácil");
-            }
-            else{
-                if(i==1){
-                    data.add("Médio");
-                }
-                else{
-                    data.add("Difícil");
-                }
-            }
-        }
     }
 
     @Override
@@ -83,46 +68,55 @@ public class ListView extends AppCompatActivity {
             super(context, resource, objects);
             mObjects = objects;
             layout = resource;
-
         }
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             ViewHolder mainViewholder = null;
-            if(convertView == null) {
+            if (convertView == null) {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(layout, parent, false);
                 ViewHolder viewHolder = new ViewHolder();
                 viewHolder.thumbnail = (ImageView) convertView.findViewById(R.id.list_item_thumbnail);
                 viewHolder.title = (TextView) convertView.findViewById(R.id.list_item_text);
                 viewHolder.button = (Button) convertView.findViewById(R.id.list_item_btn);
-                if(position == 0){
-                    viewHolder.thumbnail.setImageResource(R.drawable.facil);
-
-                }else{
-                    if(position == 1) {
-                        viewHolder.thumbnail.setImageResource(R.drawable.media);
-
-                    }else{
-                        viewHolder.thumbnail.setImageResource(R.drawable.hard);
-
-                    }
-                }
-
                 convertView.setTag(viewHolder);
             }
+
+            final String[] mDadosItem = getItem(position).split("\\|\\|");
+
+
             mainViewholder = (ViewHolder) convertView.getTag();
+
+            String nivel = mDadosItem[2];
+            if (nivel.equals("1")) {
+                mainViewholder.thumbnail.setImageResource(R.drawable.facil);
+            } else if (nivel.equals("2")) {
+                mainViewholder.thumbnail.setImageResource(R.drawable.media);
+            } else {
+                mainViewholder.thumbnail.setImageResource(R.drawable.hard);
+            }
+
+            if(mDadosItem[mDadosItem.length-1].equals("1")){
+                mainViewholder.button.setText("Apagar?");
+
+            }
+
             mainViewholder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), "Button was clicked for list item " + position, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Button was clicked for list item " + mDadosItem[0],
+                            Toast.LENGTH_SHORT).show();
+                    //TODO funcao de update no banco
                 }
             });
-            mainViewholder.title.setText(getItem(position));
+
+            mainViewholder.title.setText(mDadosItem[1]);
 
             return convertView;
         }
     }
+
     public class ViewHolder {
 
         ImageView thumbnail;
