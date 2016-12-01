@@ -22,7 +22,6 @@ import java.util.List;
 
 public class ListView extends AppCompatActivity {
 
-    private ArrayList<String> data = new ArrayList<String>();
     private ImageButton adcItem;
     private MyListAdaper adp;
 
@@ -87,7 +86,7 @@ public class ListView extends AppCompatActivity {
     }
 
 
-    private void reloadAllData(){
+    private void reloadAllData() {
         final ItemDAO itemdao = ItemDAO.getInstance(ListView.this);
         // get new modified random data
         List<String> itens = itemdao.getAll();
@@ -102,6 +101,7 @@ public class ListView extends AppCompatActivity {
         private ViewHolder mainViewholder = new ViewHolder();
         private int layout;
         private List<String> mObjects;
+
         private MyListAdaper(Context context, int resource, List<String> objects) {
             super(context, resource, objects);
             mObjects = objects;
@@ -136,29 +136,28 @@ public class ListView extends AppCompatActivity {
             } else {
                 mainViewholder.thumbnail.setImageResource(R.drawable.hard);
             }
-            System.out.println(item.isDone());
-            if (item.isDone()) { //TODO fazer funcionar
+
+            if (item.isDone()) {
+                mainViewholder.button.setText("Apagar ?");
                 mainViewholder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         itemdao.delete(item);
-                        remove(getItem(position));
+                        reloadAllData();
                     }
                 });
             } else {
                 mainViewholder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        long id = itemdao.update(item);
-                        System.out.println(id);
-                        mainViewholder.button.setText("Apagar ?");
-                        System.out.println("entrou aq");
                         item.setDone(true);
+                        itemdao.update(item);
+                        reloadAllData();
                     }
                 });
             }
+
             mainViewholder.title.setText(item.getText());
-            this.notifyDataSetChanged();
             return convertView;
         }
     }

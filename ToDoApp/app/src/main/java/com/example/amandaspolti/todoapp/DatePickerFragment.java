@@ -14,7 +14,7 @@ import java.util.Calendar;
 /**
  * Created by AmandaSpolti on 10/12/2016.
  */
-public class DatePickerFragment extends DialogFragment{
+public class DatePickerFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -24,7 +24,8 @@ public class DatePickerFragment extends DialogFragment{
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
         // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(), (TelaCadastroItem)getActivity(), year, month, day);
+        return new DatePickerDialog(getActivity(), (TelaCadastroItem) getActivity(), year,
+                month, day);
     }
 
 }

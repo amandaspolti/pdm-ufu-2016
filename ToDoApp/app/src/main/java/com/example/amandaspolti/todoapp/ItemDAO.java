@@ -43,26 +43,27 @@ public class ItemDAO{
         return db.insert(TabelaItem.TABLE_ITENS, null, values);
     }
 
-    public void delete(Item item) {
+    public int delete(Item item) {
         long id = item.get_id();
-        db.delete(TabelaItem.TABLE_ITENS,
-                TabelaItem.COLUMN_ID + '=' + id, null);
+       return db.delete(TabelaItem.TABLE_ITENS,
+                TabelaItem.COLUMN_ID + " = ?" ,new String[] {Long.toString(id)} );
     }
 
-    public long update(Item item) { //TODO NAO TA FUNCIONANDO
-        //TODO verificar o metodo de update
+    public int update(Item item) {// retorna 1 se achou, 0 caso nao
         System.out.println("NO METODO");
         ContentValues values = new ContentValues();
 
         long id = item.get_id();
-        System.out.println(item.getText());
 
         values.put(TabelaItem.COLUMN_ITEM, item.getText());
         values.put(TabelaItem.COLUMN_NIVEL, item.getNivel());
         values.put(TabelaItem.COLUMN_DUEDATE, item.getDueDate());
         values.put(TabelaItem.COLUMN_DONE, item.isDone());
 
-        return db.update(TabelaItem.TABLE_ITENS, values, TabelaItem.COLUMN_ID + '=' + id, null);
+        String[] whereargs = new String[] {String.valueOf(id)};
+
+        return db.update(TabelaItem.TABLE_ITENS, values, TabelaItem.COLUMN_ID + " = ?", whereargs);
+
     }
 
 

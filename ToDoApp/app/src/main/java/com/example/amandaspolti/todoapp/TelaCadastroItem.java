@@ -210,7 +210,7 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
         Log.w("DatePicker", "Date = " + year);
-        ((EditText) findViewById(R.id.cadastro_item_data)).setText(day + "/" + month + "/" + year);
+        ((EditText) findViewById(R.id.cadastro_item_data)).setText(day + "/" + (month+1) + "/" + year);
     }
 
 }

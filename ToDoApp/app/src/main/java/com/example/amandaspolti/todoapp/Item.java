@@ -24,7 +24,7 @@ public class Item {
         _id = Long.parseLong(id);
         this.text = text;
         dueDate = data;
-        done = Boolean.parseBoolean(status);
+        done = status.equals("0")? false: true ;
         this.nivel = Integer.parseInt(nivel);
     }
 

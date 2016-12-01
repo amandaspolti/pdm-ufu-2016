@@ -23,16 +23,16 @@ public class UsuarioDAO extends AppCompatActivity {
     private UsuarioDAO() {   }
 
     public boolean tryLogin(String username, String password) {
-        return (this.username.equals(username) && this.getSenha().equals(password));
+        return (this.getUsername().equals(username) && this.getSenha().equals(password));
     }
 
     public boolean tryCadastrar(String username, String password) {
-        if (this.username != null)
+        if (this.getUsername() != null)
             return false;
         else {
             SharedPreferences.Editor ed = seetings.edit();
             ed.putString(USERNAME, username);
-            ed.putString(PASSWORD, password); // TODO criptografar senha
+            ed.putString(PASSWORD, password);
             ed.commit();
             return true;
         }
@@ -60,6 +60,6 @@ public class UsuarioDAO extends AppCompatActivity {
     }
 
     public boolean exists(){
-        return this.username != null;
+        return this.getUsername() != null;
     }
 }
