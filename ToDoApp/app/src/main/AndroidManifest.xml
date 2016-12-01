@@ -20,12 +20,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".TelaConfig" />
-        <activity
-            android:name=".Main"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ListView" />
         <activity
             android:name=".TelaCadastro"
             android:label="@string/title_activity_tela_cadastro"></activity>
+        <activity android:name=".TelaCadastroItem"
+            android:label="Novo Item"/>
     </application>
 
 </manifest>
