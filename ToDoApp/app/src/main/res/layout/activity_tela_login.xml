@@ -24,7 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:gravity="center_horizontal"
-        android:text="Seja bem-vindo! Por favor, digite os seus dados." />
+        android:text="Seja bem-vindo! Por favor, digite os seus dados."
+        android:textColor="@color/colorText"
+        android:textSize="20dp" />
 
     <ScrollView
         android:id="@+id/login_form"

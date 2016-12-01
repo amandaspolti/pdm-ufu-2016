@@ -46,6 +46,10 @@ public class TelaLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_login);
 
+        if(user.exists()){
+            Intent i = new Intent(TelaLogin.this, ListView.class);
+            startActivity(i);
+        }
 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.login_email);

@@ -102,9 +102,9 @@ public class ListView extends AppCompatActivity {
     private class MyListAdaper extends ArrayAdapter<String> {
         private int layout;
         private List<String> mObjects;
-        private Item item;
 
-        private final ItemDAO itemdao = ItemDAO.getInstance(ListView.this);
+
+
 
         private MyListAdaper(Context context, int resource, List<String> objects) {
             super(context, resource, objects);
@@ -127,10 +127,10 @@ public class ListView extends AppCompatActivity {
             }
 
             final String[] mDadosItem = getItem(position).split("\\|\\|");
+            final ItemDAO itemdao = ItemDAO.getInstance(ListView.this);
 
-            item = new Item(mDadosItem[0], mDadosItem[1], mDadosItem[2], mDadosItem[3],
+            final Item item = new Item(mDadosItem[0], mDadosItem[1], mDadosItem[2], mDadosItem[3],
                     mDadosItem[4]);
-
 
             mainViewholder = (ViewHolder) convertView.getTag();
 
@@ -151,16 +151,19 @@ public class ListView extends AppCompatActivity {
                     }
                 });
                 remove(getItem(position));
+                this.notifyDataSetChanged();
             } else {
                 mainViewholder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         item.setDone(1);
-                        itemdao.update(item);
+                        long id = itemdao.update(item);
+                        System.out.println(id);
                     }
                 });
                 if (item.isDone())
                     mainViewholder.button.setText("Apagar?");
+                this.notifyDataSetChanged();
             }
 
             mainViewholder.title.setText(item.getText());

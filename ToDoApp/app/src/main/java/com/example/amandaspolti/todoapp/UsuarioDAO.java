@@ -58,4 +58,8 @@ public class UsuarioDAO extends AppCompatActivity {
         this.password = seetings.getString(PASSWORD, null);
         this.username = seetings.getString(USERNAME, null);
     }
+
+    public boolean exists(){
+        return this.username != null;
+    }
 }

@@ -15,12 +15,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This is row number 15"
+        android:textColor="@color/colorText"
         android:id="@+id/list_item_text"
         android:layout_toEndOf="@+id/list_item_thumbnail" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
         android:text="Feito!"
         android:layout_alignParentRight="true"
         android:id="@+id/list_item_btn"/>

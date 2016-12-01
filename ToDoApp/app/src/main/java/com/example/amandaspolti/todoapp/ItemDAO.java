@@ -49,16 +49,20 @@ public class ItemDAO{
                 TabelaItem.COLUMN_ID + '=' + id, null);
     }
 
-    public void update(Item item) {
+    public long update(Item item) { //TODO NAO TA FUNCIONANDO
+        //TODO verificar o metodo de update
+        System.out.println("NO METODO");
         ContentValues values = new ContentValues();
 
         long id = item.get_id();
+        System.out.println(item.getText());
+
         values.put(TabelaItem.COLUMN_ITEM, item.getText());
         values.put(TabelaItem.COLUMN_NIVEL, item.getNivel());
         values.put(TabelaItem.COLUMN_DUEDATE, item.getDueDate());
         values.put(TabelaItem.COLUMN_DONE, item.isDone());
 
-        db.update(TabelaItem.TABLE_ITENS, values, TabelaItem.COLUMN_ID + '=' + id, null);
+        return db.update(TabelaItem.TABLE_ITENS, values, TabelaItem.COLUMN_ID + '=' + id, null);
     }
 
 

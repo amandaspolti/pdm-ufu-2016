@@ -174,7 +174,8 @@ public class TelaCadastro extends AppCompatActivity {
             if (success) {
                 finish();
             } else {
-                mEmailView.setError("Este usuário já existe");
+                mEmailView.setError("Este aplicativo é exclusivo. Usuário " +
+                        UsuarioDAO.getInstance().getUsername() + " já cadastrado.");
                 mEmailView.requestFocus();
             }
         }
