@@ -71,7 +71,6 @@ public class TelaCadastroItem extends AppCompatActivity {
         String dueDate = mEditData.getText().toString();
 
 
-
         boolean cancel = false;
         View focusView = null;
 
@@ -160,6 +159,8 @@ public class TelaCadastroItem extends AppCompatActivity {
                 return false;
             }
 
+            ItemDAO itemdao = new ItemDAO(TelaCadastroItem.this);
+            long id = itemdao.create(mText, mDueDate, mNivel);
             return true;
         }
 
@@ -167,11 +168,10 @@ public class TelaCadastroItem extends AppCompatActivity {
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-
             if (success) {
                 finish();
             } else {
-                //TODO
+              //TODO tratar o erro
             }
         }
 
@@ -193,7 +193,6 @@ public class TelaCadastroItem extends AppCompatActivity {
 
 
     public void onBtnCadastrarItem(View view) {
-
 
 
         //TODO Como pegar data e colocar em no banco

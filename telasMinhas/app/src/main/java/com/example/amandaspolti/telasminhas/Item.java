@@ -1,28 +1,32 @@
 package com.example.amandaspolti.telasminhas;
+
 /**
  * Classe responsável pelo Item.
  */
 public class Item {
     private long _id;
-    private boolean status;
+    private boolean done;
     private String text;
-    private byte[] dueDate;
-    private byte nivel; //1 facil 2 medio 3 dificil
+    private String dueDate;
+    private int nivel; //1 facil 2 medio 3 dificil
 
-    public Item() {
+
+    Item() {
     }
 
-    public Item(String text, byte nivel) {
-        this.status = false;
+    Item(String text, String data, int nivel) {
         this.text = text;
+        dueDate = data;
+        done = false;
         this.nivel = nivel;
     }
 
-    public byte[] getDueDate() {
+
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(byte[] dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -34,15 +38,6 @@ public class Item {
         this.text = text;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status =
-                Boolean.parseBoolean(Integer.toString(status));
-    }
-
     public long get_id() {
         return _id;
     }
@@ -51,11 +46,19 @@ public class Item {
         this._id = _id;
     }
 
-    public byte getNivel() {
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(int done) {
+        this.done = Boolean.parseBoolean(String.valueOf(done));
+    }
+
+    public int getNivel() {
         return nivel;
     }
 
     public void setNivel(int nivel) {
-        this.nivel = Byte.parseByte(Integer.toString(nivel));
+        this.nivel = nivel;
     }
 }
