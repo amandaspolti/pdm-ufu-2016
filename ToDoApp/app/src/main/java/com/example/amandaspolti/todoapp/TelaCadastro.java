@@ -151,7 +151,7 @@ public class TelaCadastro extends AppCompatActivity {
 
         UserCadastroTask(String email, String password) {
             mEmail = email;
-            mPassword = password;
+            mPassword = Criptografia.cryptWithMD5(password);
         }
 
         @Override

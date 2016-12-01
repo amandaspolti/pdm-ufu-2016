@@ -76,8 +76,6 @@ public class TelaLogin extends AppCompatActivity {
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
-
     }
 
     private void populateAutoComplete() {
@@ -103,7 +101,7 @@ public class TelaLogin extends AppCompatActivity {
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String password = Criptografia.cryptWithMD5(mPasswordView.getText().toString());
 
         boolean cancel = false;
         View focusView = null;
@@ -197,10 +195,8 @@ public class TelaLogin extends AppCompatActivity {
 
         UserLoginTask(String email, String password) {
             mEmail = email;
-            mPassword = password;
+            mPassword = Criptografia.cryptWithMD5(password);
         }
-
-
         @Override
         protected Boolean doInBackground(Void... params) {
 

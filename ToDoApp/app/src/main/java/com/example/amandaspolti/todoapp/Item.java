@@ -15,8 +15,8 @@ public class Item {
 
     public Item(String text, String data, int nivel) {
         this.text = text;
-        dueDate = data;
-        done = false;
+        this.dueDate = data;
+        this.done = false;
         this.nivel = nivel;
     }
 
@@ -57,8 +57,8 @@ public class Item {
         return done;
     }
 
-    public void setDone(int done) {
-        this.done = Boolean.parseBoolean(String.valueOf(done));
+    public void setDone(boolean done) {
+        this.done = done;
     }
 
     public int getNivel() {

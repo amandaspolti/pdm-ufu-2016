@@ -26,7 +26,6 @@ public class ListView extends AppCompatActivity {
     private ImageButton adcItem;
     private MyListAdaper adp;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,22 +99,18 @@ public class ListView extends AppCompatActivity {
     }
 
     private class MyListAdaper extends ArrayAdapter<String> {
+        private ViewHolder mainViewholder = new ViewHolder();
         private int layout;
         private List<String> mObjects;
-
-
-
-
         private MyListAdaper(Context context, int resource, List<String> objects) {
             super(context, resource, objects);
             mObjects = objects;
             layout = resource;
         }
 
-
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            ViewHolder mainViewholder = null;
+            mainViewholder = null;
             if (convertView == null) {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(layout, parent, false);
@@ -141,37 +136,31 @@ public class ListView extends AppCompatActivity {
             } else {
                 mainViewholder.thumbnail.setImageResource(R.drawable.hard);
             }
-
+            System.out.println(item.isDone());
             if (item.isDone()) { //TODO fazer funcionar
-                mainViewholder.button.setText("Apagar?");
                 mainViewholder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         itemdao.delete(item);
+                        remove(getItem(position));
                     }
                 });
-                remove(getItem(position));
-                this.notifyDataSetChanged();
             } else {
                 mainViewholder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        item.setDone(1);
                         long id = itemdao.update(item);
                         System.out.println(id);
+                        mainViewholder.button.setText("Apagar ?");
+                        System.out.println("entrou aq");
+                        item.setDone(true);
                     }
                 });
-                if (item.isDone())
-                    mainViewholder.button.setText("Apagar?");
-                this.notifyDataSetChanged();
             }
-
             mainViewholder.title.setText(item.getText());
-
+            this.notifyDataSetChanged();
             return convertView;
         }
-
-
     }
 
     public class ViewHolder {

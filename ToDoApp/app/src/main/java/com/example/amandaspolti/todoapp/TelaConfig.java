@@ -20,6 +20,8 @@ public class TelaConfig extends AppCompatActivity {
         volta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println(UsuarioDAO.getInstance().getUsername());
+                System.out.println(UsuarioDAO.getInstance().getSenha());
                 Intent i = new Intent(TelaConfig.this, ListView.class);
                 startActivity(i);
             }
