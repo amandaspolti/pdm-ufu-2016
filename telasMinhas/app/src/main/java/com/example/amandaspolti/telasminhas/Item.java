@@ -21,6 +21,14 @@ public class Item {
         this.nivel = nivel;
     }
 
+    Item(String id, String text, String nivel, String data, String status) {
+        _id = Long.parseLong(id);
+        this.text = text;
+        dueDate = data;
+        done = Boolean.parseBoolean(status);
+        this.nivel = Integer.parseInt(nivel);
+    }
+
 
     public String getDueDate() {
         return dueDate;

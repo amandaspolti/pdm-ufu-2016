@@ -63,6 +63,7 @@ public class ListView extends AppCompatActivity {
     private class MyListAdaper extends ArrayAdapter<String> {
         private int layout;
         private List<String> mObjects;
+        private Item item;
 
         private MyListAdaper(Context context, int resource, List<String> objects) {
             super(context, resource, objects);
@@ -85,33 +86,45 @@ public class ListView extends AppCompatActivity {
 
             final String[] mDadosItem = getItem(position).split("\\|\\|");
 
+            item = new Item(mDadosItem[0], mDadosItem[1], mDadosItem[2], mDadosItem[3],
+                    mDadosItem[4]);
+            final ItemDAO itemdao = ItemDAO.getInstance(ListView.this);
+
 
             mainViewholder = (ViewHolder) convertView.getTag();
 
-            String nivel = mDadosItem[2];
-            if (nivel.equals("1")) {
+
+            if (item.getNivel() == 1) {
                 mainViewholder.thumbnail.setImageResource(R.drawable.facil);
-            } else if (nivel.equals("2")) {
+            } else if (item.getNivel() == 2) {
                 mainViewholder.thumbnail.setImageResource(R.drawable.media);
             } else {
                 mainViewholder.thumbnail.setImageResource(R.drawable.hard);
             }
 
-            if(mDadosItem[mDadosItem.length-1].equals("1")){
-                mainViewholder.button.setText("Apagar?");
 
+            if (item.isDone()) { //TODO fazer funcionar
+                mainViewholder.button.setText("Apagar?");
+                mainViewholder.button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        itemdao.delete(item);
+                    }
+                });
+                remove(getItem(position));
+            } else {
+                mainViewholder.button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        item.setDone(1);
+                        itemdao.update(item);
+                    }
+                });
+                if (item.isDone())
+                    mainViewholder.button.setText("Apagar?");
             }
 
-            mainViewholder.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(getContext(), "Button was clicked for list item " + mDadosItem[0],
-                            Toast.LENGTH_SHORT).show();
-                    //TODO funcao de update no banco
-                }
-            });
-
-            mainViewholder.title.setText(mDadosItem[1]);
+            mainViewholder.title.setText(item.getText());
 
             return convertView;
         }

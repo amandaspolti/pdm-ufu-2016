@@ -37,9 +37,7 @@ public class ItemDAO {
 
         values.put(TabelaItem.COLUMN_ITEM, text);
         values.put(TabelaItem.COLUMN_NIVEL, nivel);
-        if (dueDate != null) {
-            values.put(TabelaItem.COLUMN_DUEDATE, dueDate);
-        }
+        values.put(TabelaItem.COLUMN_DUEDATE, dueDate);
         values.put(TabelaItem.COLUMN_DONE, false);
 
         return db.insert(TabelaItem.TABLE_ITENS, null, values);
@@ -50,6 +48,19 @@ public class ItemDAO {
         db.delete(TabelaItem.TABLE_ITENS,
                 TabelaItem.COLUMN_ID + '=' + id, null);
     }
+
+    public void update(Item item) {
+        ContentValues values = new ContentValues();
+
+        long id = item.get_id();
+        values.put(TabelaItem.COLUMN_ITEM, item.getText());
+        values.put(TabelaItem.COLUMN_NIVEL, item.getNivel());
+        values.put(TabelaItem.COLUMN_DUEDATE, item.getDueDate());
+        values.put(TabelaItem.COLUMN_DONE, item.isDone());
+
+        db.update(TabelaItem.TABLE_ITENS, values, TabelaItem.COLUMN_ID + '=' + id, null);
+    }
+
 
     public List<String> getAll() {
         List<String> itens = new ArrayList<>();
