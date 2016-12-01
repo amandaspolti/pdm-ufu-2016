@@ -12,14 +12,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TelaComTasks extends AppCompatActivity {
+public class ListView extends AppCompatActivity {
 
     private ArrayList<String> data = new ArrayList<String>();
 
@@ -27,13 +26,13 @@ public class TelaComTasks extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_com_tasks);
-        ListView lv = (ListView) findViewById(R.id.listview);
+        android.widget.ListView lv = (android.widget.ListView) findViewById(R.id.listview);
         generateListContent();
         lv.setAdapter(new MyListAdaper(this, R.layout.list_item, data));
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(TelaComTasks.this, "List item was clicked at " + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListView.this, "List item was clicked at " + position, Toast.LENGTH_SHORT).show();
             }
         });
     }

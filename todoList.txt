@@ -15,7 +15,7 @@
 
 
 --------Feito - Falta Ajustes de Design --------
--Tela Cadastro Usuario
-- Tela Cadastro Item 
-- Tela Login
-- 
+-Tela Cadastro Usuario OK
+- Tela Cadastro Item  OK
+- Tela Login OK
+- Tela com List View Personalizado OK
