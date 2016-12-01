@@ -9,14 +9,16 @@
 
 --------------------------------- dev
 
-- testar codigo (banco)
-- Clicar duas vezes para abrir Date Picker
+- testar codigo (banco) OK
+- Clicar duas vezes para abrir Date Picker OK
 - Setar EditText com a data do Date Picker OK
 - Acao para Sair da Aplicacao
 - Service para mandar notificacao
 - Salvar tela Configuracoes
 - Arrumar Design
--Popular ListView
+- Popular ListView OK
+- Controle Botao - Apagar e Feito TESTAR
+- Manter Login
 
 
 --------Feito - Falta Ajustes de Design --------

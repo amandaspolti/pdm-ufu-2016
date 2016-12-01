@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.amandaspolti.todoapp">
+    package="com.example.amandaspolti.todoapp"
 
+    >
+
+    <uses-sdk android:minSdkVersion="16"></uses-sdk>
     <!-- TODO mudar o icone -->
     <application
         android:allowBackup="true"

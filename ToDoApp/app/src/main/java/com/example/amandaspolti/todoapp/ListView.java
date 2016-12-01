@@ -24,6 +24,7 @@ public class ListView extends AppCompatActivity {
 
     private ArrayList<String> data = new ArrayList<String>();
     private ImageButton adcItem;
+    private MyListAdaper adp;
 
 
     @Override
@@ -33,7 +34,8 @@ public class ListView extends AppCompatActivity {
         android.widget.ListView lv = (android.widget.ListView) findViewById(R.id.listview);
 
         ItemDAO itemdao = ItemDAO.getInstance(ListView.this);
-        lv.setAdapter(new MyListAdaper(this, R.layout.list_item, itemdao.getAll()));
+        adp = new MyListAdaper(this, R.layout.list_item, itemdao.getAll());
+        lv.setAdapter(adp);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -52,12 +54,16 @@ public class ListView extends AppCompatActivity {
             }
         });
 
+    }
 
+    @Override
+    protected void onResume() {
+        reloadAllData();
+        super.onResume();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -75,13 +81,22 @@ public class ListView extends AppCompatActivity {
             startActivity(i);
             return true;
         } else if (id == R.id.action_sair) {
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            this.finishAffinity();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void reloadAllData(){
+        final ItemDAO itemdao = ItemDAO.getInstance(ListView.this);
+        // get new modified random data
+        List<String> itens = itemdao.getAll();
+        // update data in our adapter
+        adp.clear();
+        adp.addAll(itens);
+        // fire the event
+        adp.notifyDataSetChanged();
     }
 
     private class MyListAdaper extends ArrayAdapter<String> {
@@ -89,11 +104,14 @@ public class ListView extends AppCompatActivity {
         private List<String> mObjects;
         private Item item;
 
+        private final ItemDAO itemdao = ItemDAO.getInstance(ListView.this);
+
         private MyListAdaper(Context context, int resource, List<String> objects) {
             super(context, resource, objects);
             mObjects = objects;
             layout = resource;
         }
+
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
@@ -112,7 +130,7 @@ public class ListView extends AppCompatActivity {
 
             item = new Item(mDadosItem[0], mDadosItem[1], mDadosItem[2], mDadosItem[3],
                     mDadosItem[4]);
-            final ItemDAO itemdao = ItemDAO.getInstance(ListView.this);
+
 
             mainViewholder = (ViewHolder) convertView.getTag();
 
@@ -149,6 +167,8 @@ public class ListView extends AppCompatActivity {
 
             return convertView;
         }
+
+
     }
 
     public class ViewHolder {

@@ -166,14 +166,17 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(800);
             } catch (InterruptedException e) {
                 return false;
             }
 
             ItemDAO itemdao = ItemDAO.getInstance(TelaCadastroItem.this);
             itemdao.create(mText, mDueDate, mNivel);
+
+
             return true;
+
         }
 
         @Override
@@ -182,6 +185,8 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
             showProgress(false);
 
             if (success) {
+                Intent i = new Intent(TelaCadastroItem.this, ListView.class);
+                startActivity(i);
                 finish();
             } else {
                 //TODO
