@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
@@ -52,6 +53,14 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
 
             }
         });
+
+//        mEditData.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//
+//                return showDatePickerDialog(view);
+//            }
+//        });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.cadastro_item_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
@@ -203,9 +212,10 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
     }
 
 
-    public /*String*/ void showDatePickerDialog(View v) {
+    public boolean showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
+        return true;
 
     }
     public void onDateSet(DatePicker view, int year, int month, int day) {

@@ -11,7 +11,7 @@
 
 - testar codigo (banco)
 - Clicar duas vezes para abrir Date Picker
-- Setar EditText com a data do Date Picker
+- Setar EditText com a data do Date Picker OK
 - Acao para Sair da Aplicacao
 - Service para mandar notificacao
 - Salvar tela Configuracoes

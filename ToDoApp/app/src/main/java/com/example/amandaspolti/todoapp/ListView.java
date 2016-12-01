@@ -94,6 +94,14 @@ public class ListView extends AppCompatActivity {
             startActivity(i);
             return true;
         }else if(id == R.id.action_sair){
+
+//            @Override
+//            public void onBackPressed(){
+//                Intent intent = new Intent(getApplicationContext(), TelaLogin.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                intent.putExtra("EXIT", true);
+//                startActivity(intent);
+//            }
             Toast.makeText(this, "Sair da Aplicacao", Toast.LENGTH_LONG).show();
         }
 
@@ -122,11 +130,10 @@ public class ListView extends AppCompatActivity {
                 viewHolder.title = (TextView) convertView.findViewById(R.id.list_item_text);
                 viewHolder.button = (Button) convertView.findViewById(R.id.list_item_btn);
                 if(position == 0){
-                    viewHolder.thumbnail.setImageResource(R.drawable.facil);
-
+                    viewHolder.thumbnail.setImageResource(R.drawable.easy);
                 }else{
                     if(position == 1) {
-                        viewHolder.thumbnail.setImageResource(R.drawable.media);
+                        viewHolder.thumbnail.setImageResource(R.drawable.medium);
 
                     }else{
                         viewHolder.thumbnail.setImageResource(R.drawable.hard);
