@@ -55,15 +55,13 @@ public class ListView extends AppCompatActivity {
     }
 
     private void generateListContent() {
-        for(int i = 0; i < 3; i++) {
-            if(i==0){
+        for (int i = 0; i < 3; i++) {
+            if (i == 0) {
                 data.add("Fácil");
-            }
-            else{
-                if(i==1){
+            } else {
+                if (i == 1) {
                     data.add("Médio");
-                }
-                else{
+                } else {
                     data.add("Difícil");
                 }
             }
@@ -89,20 +87,15 @@ public class ListView extends AppCompatActivity {
             Intent i = new Intent(ListView.this, TelaConfig.class);
             startActivity(i);
             return true;
-        }else if(id == R.id.action_sobre){
+        } else if (id == R.id.action_sobre) {
             Intent i = new Intent(ListView.this, TelaSobre.class);
             startActivity(i);
             return true;
-        }else if(id == R.id.action_sair){
-
-//            @Override
-//            public void onBackPressed(){
-//                Intent intent = new Intent(getApplicationContext(), TelaLogin.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                intent.putExtra("EXIT", true);
-//                startActivity(intent);
-//            }
-            Toast.makeText(this, "Sair da Aplicacao", Toast.LENGTH_LONG).show();
+        } else if (id == R.id.action_sair) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -122,20 +115,20 @@ public class ListView extends AppCompatActivity {
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             ViewHolder mainViewholder = null;
-            if(convertView == null) {
+            if (convertView == null) {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(layout, parent, false);
                 ViewHolder viewHolder = new ViewHolder();
                 viewHolder.thumbnail = (ImageView) convertView.findViewById(R.id.list_item_thumbnail);
                 viewHolder.title = (TextView) convertView.findViewById(R.id.list_item_text);
                 viewHolder.button = (Button) convertView.findViewById(R.id.list_item_btn);
-                if(position == 0){
+                if (position == 0) {
                     viewHolder.thumbnail.setImageResource(R.drawable.easy);
-                }else{
-                    if(position == 1) {
+                } else {
+                    if (position == 1) {
                         viewHolder.thumbnail.setImageResource(R.drawable.medium);
 
-                    }else{
+                    } else {
                         viewHolder.thumbnail.setImageResource(R.drawable.hard);
 
                     }
@@ -155,6 +148,7 @@ public class ListView extends AppCompatActivity {
             return convertView;
         }
     }
+
     public class ViewHolder {
 
         ImageView thumbnail;

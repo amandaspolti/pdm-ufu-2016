@@ -87,6 +87,7 @@ public class TelaLogin extends AppCompatActivity {
         mEmailView.setAdapter(adapter);
     }
 
+
     private void attemptLogin() {
         if (mAuthTask != null) {
             return;
