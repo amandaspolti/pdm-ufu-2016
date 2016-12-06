@@ -1,0 +1,11 @@
+** Falta Implementar **
+
+- Preferencias -> Deve apresentar uma tela de configuração com dados armazenados em um SharedPreferences.
+
+- Spinner
+
+- Notifications -> Ao clicar na notificação, deve ser exibida uma tela associada à notificação. Ao ser fechada a aplicação retorna ao menu principal.
+
+- Alert Dialog -> pode ser feito ao clicar em Feito em uma tarefa.
+
+- Toast para mensagens de informação
