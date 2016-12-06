@@ -8,10 +8,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.amandaspolti.todoapp.TelaCadastro">
+    tools:context="com.example.amandaspolti.todoapp.TelaEditaItem">
 
+    <!-- Login progress -->
     <ProgressBar
-        android:id="@+id/cadastro_progress"
+        android:id="@+id/edita_item_progress"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,56 +20,37 @@
         android:visibility="gone" />
 
     <ScrollView
-        android:id="@+id/cadastro_form"
+        android:id="@+id/edita_item_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
         <LinearLayout
-            android:id="@+id/email_cadastro_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
                 android:textColor="@color/colorText"
-                android:text="Olá! Digite seus dados ."
+                android:text="Olá! Digite nos campos que deseja editar."
                 android:textSize="20dp" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/cadastro_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_email"
-                    android:imeActionLabel="@string/hint_email"
-                    android:imeOptions="actionUnspecified"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textColor="@color/colorText" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/cadastro_password"
+                    android:id="@+id/edita_item_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hint_password"
-                    android:imeActionLabel="@string/hint_password"
+                    android:hint="@string/hint_item"
+                    android:imeActionLabel="@string/hint_item"
                     android:imeOptions="actionUnspecified"
-                    android:inputType="textPassword"
+                    android:inputType="textCapSentences"
                     android:maxLines="1"
                     android:textColor="@color/colorText"
                     android:singleLine="true" />
@@ -78,28 +60,64 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
+                android:text="Nível"
                 android:textColor="@color/colorText"
-                android:text="Região"
-                android:textSize="20dp" />
-            <Spinner
-                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:textIsSelectable="false" />
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/edita_item_radio_group"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner"
-                android:layout_gravity="right" />
+                android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <CheckBox
-                    android:id="@+id/cadastro_checkbox"
+                <RadioButton
+                    android:id="@+id/edita_radioFacil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checked="false"
                     android:textColor="@color/colorText"
-                    android:text="Concordo com os Termos de Uso"/>
-            </LinearLayout>
+                    android:text="Fácil" />
 
+
+                <RadioButton
+                    android:id="@+id/edita_radioMedio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:textColor="@color/colorText"
+                    android:text="Médio" />
+
+
+                <RadioButton
+                    android:id="@+id/edita_radioHard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:textColor="@color/colorText"
+                    android:text="Difícil" />
+            </RadioGroup>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edita_item_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_data"
+                    android:imeActionLabel="@string/hint_data"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="date"
+                    android:maxLines="1"
+                    android:textColor="@color/colorText"
+                    android:singleLine="true"
+                    android:focusableInTouchMode="false"/>
+
+
+            </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -107,7 +125,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/voltar_login_button"
+                    android:id="@+id/edita_voltar_itens_button"
                     style="?android:textAppearanceSmall"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -118,13 +136,13 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/cadastro_usuario_button"
+                    android:id="@+id/edita_item_button"
                     style="?android:textAppearanceSmall"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_weight=".50"
-                    android:text="Cadastrar"
+                    android:text="Salvar"
                     android:textColor="@color/colorText"
                     android:textStyle="bold" />
             </LinearLayout>

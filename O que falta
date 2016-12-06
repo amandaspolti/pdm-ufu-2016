@@ -1,8 +1,8 @@
 ** Falta Implementar **
 
-- Preferencias -> Deve apresentar uma tela de configuração com dados armazenados em um SharedPreferences.
+- Preferencias -> Deve apresentar uma tela de configuração com dados armazenados em um SharedPreferences.  FEITO
 
-- Spinner
+- Spinner FEITO
 
 - Notifications -> Ao clicar na notificação, deve ser exibida uma tela associada à notificação. Ao ser fechada a aplicação retorna ao menu principal.
 
@@ -10,5 +10,9 @@
 
 - Toast para mensagens de informação FEITO 
 
+<<<<<<< b0724a9503ef7a545a1d63f1cce4f9557d28d1da
 - Tela para Editar uma tarefa
 
+=======
+- Tela para Editar uma tarefa FEITO
+>>>>>>> editando item

@@ -46,10 +46,18 @@ public class ListView extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ListView.this, (CharSequence) itemdao.getData(), Toast.LENGTH_LONG).show();
-                Toast.makeText(ListView.this, "List item was clicked at " + position,
-                        Toast.LENGTH_SHORT).show();
-                //TODO edittar item
+
+                String s = (String) parent.getItemAtPosition(position);
+
+                final String[] mDadosItem = s.split("\\|\\|");
+
+                final Item item = new Item(mDadosItem[0], mDadosItem[1], mDadosItem[2], mDadosItem[3],
+                        mDadosItem[4]);
+
+                Intent intent = new Intent(ListView.this, TelaEditaItem.class);
+                intent.putExtra("item", item);
+
+                startActivity(intent);
             }
         });
 
@@ -126,6 +134,7 @@ public class ListView extends AppCompatActivity {
                 viewHolder.thumbnail = (ImageView) convertView.findViewById(R.id.list_item_thumbnail);
                 viewHolder.title = (TextView) convertView.findViewById(R.id.list_item_text);
                 viewHolder.button = (Button) convertView.findViewById(R.id.list_item_btn);
+                viewHolder.data = (TextView) convertView.findViewById(R.id.list_item_data);
                 convertView.setTag(viewHolder);
             }
 
@@ -144,6 +153,7 @@ public class ListView extends AppCompatActivity {
             } else {
                 mainViewholder.thumbnail.setImageResource(R.drawable.hard);
             }
+
 
             if (item.isDone()) {
 
@@ -183,13 +193,22 @@ public class ListView extends AppCompatActivity {
             }
 
             mainViewholder.title.setText(item.getText());
+
+            if(item.getDueDate() != null)
+                 mainViewholder.data.setText(item.getDueDate());
             return convertView;
         }
+
+
+
     }
+
+
 
     public class ViewHolder {
         ImageView thumbnail;
         TextView title;
         Button button;
+        TextView data;
     }
 }

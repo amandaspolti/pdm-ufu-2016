@@ -51,7 +51,6 @@ public class ItemDAO{
     }
 
     public int update(Item item) {// retorna 1 se achou, 0 caso nao
-        System.out.println("NO METODO");
         ContentValues values = new ContentValues();
 
         long id = item.get_id();

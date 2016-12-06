@@ -4,12 +4,7 @@
 
     <uses-sdk android:minSdkVersion="16" />
 
-    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-
-    <!-- TODO mudar o icone -->
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -50,6 +45,9 @@
             </intent-filter>
         </receiver>
 
+        <activity
+            android:name=".TelaEditaItem"
+            android:label="@string/title_activity_tela_edita_item"></activity>
     </application>
 
 </manifest>

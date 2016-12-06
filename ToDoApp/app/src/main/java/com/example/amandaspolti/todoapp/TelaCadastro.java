@@ -11,10 +11,15 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TelaCadastro extends AppCompatActivity {
 
@@ -54,6 +59,28 @@ public class TelaCadastro extends AppCompatActivity {
 
             }
         });
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+
+        // Spinner click listener
+
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<String>();
+
+        categories.add("Norte");
+        categories.add("Nordeste");
+        categories.add("Centro-Oeste");
+        categories.add("Sudeste");
+        categories.add("Sul");
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
 
         mCadastroFormView = findViewById(R.id.cadastro_form);
         mProgressView = findViewById(R.id.cadastro_progress);

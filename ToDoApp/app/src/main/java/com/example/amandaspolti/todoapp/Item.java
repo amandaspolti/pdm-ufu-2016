@@ -1,29 +1,21 @@
 package com.example.amandaspolti.todoapp;
+
+import java.io.Serializable;
+
 /**
  * Classe responsável pelo Item.
  */
-public class Item {
+public class Item implements Serializable{
     private long _id;
     private boolean done;
     private String text;
     private String dueDate;
     private int nivel; //1 facil 2 medio 3 dificil
 
-
-    public Item() {
-    }
-
-    public Item(String text, String data, int nivel) {
-        this.text = text;
-        this.dueDate = data;
-        this.done = false;
-        this.nivel = nivel;
-    }
-
     public Item(String id, String text, String nivel, String data, String status) {
         _id = Long.parseLong(id);
         this.text = text;
-        dueDate = data;
+        dueDate =  data.equals("null") ? null : data;
         done = status.equals("0")? false: true ;
         this.nivel = Integer.parseInt(nivel);
     }

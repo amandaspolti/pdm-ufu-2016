@@ -190,8 +190,6 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
                 Intent i = new Intent(TelaCadastroItem.this, ListView.class);
                 startActivity(i);
                 finish();
-            } else {
-                //TODO
             }
         }
 
@@ -204,7 +202,7 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
 
 
     public boolean showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
+        DialogFragment newFragment = new DatePickerFragment(TelaCadastroItem.this);
         newFragment.show(getSupportFragmentManager(), "datePicker");
         return true;
 

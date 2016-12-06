@@ -23,14 +23,17 @@
      android:layout_width="match_parent"
      android:layout_height="wrap_content">
      <TableRow>
-         <TextView android:text="Vibrar"
+         <TextView
+
+             android:text="Vibrar"
              android:textColor="@color/colorText"/>
-         <ToggleButton  />
+         <ToggleButton android:id="@+id/vibrar"/>
      </TableRow>
      <TableRow>
          <TextView android:text="Tocar"
+
              android:textColor="@color/colorText"/>
-         <ToggleButton />
+         <ToggleButton android:id="@+id/tocar"/>
      </TableRow>
 
 
