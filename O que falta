@@ -6,6 +6,9 @@
 
 - Notifications -> Ao clicar na notificação, deve ser exibida uma tela associada à notificação. Ao ser fechada a aplicação retorna ao menu principal.
 
-- Alert Dialog -> pode ser feito ao clicar em Feito em uma tarefa.
+- Alert Dialog -> pode ser feito ao clicar em Feito em uma tarefa. FEITO
 
-- Toast para mensagens de informação
+- Toast para mensagens de informação FEITO 
+
+- Tela para Editar uma tarefa
+

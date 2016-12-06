@@ -4,7 +4,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
@@ -28,8 +30,7 @@ public class ListView extends AppCompatActivity {
 
     private ImageButton adcItem;
     private MyListAdaper adp;
-    NotificationManager notificationManager;
-
+    private AlertDialog alerta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,14 +146,31 @@ public class ListView extends AppCompatActivity {
             }
 
             if (item.isDone()) {
-                mainViewholder.button.setText("Apagar ?");
-                mainViewholder.button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListView.this);
+                //define o titulo
+                builder.setTitle("Item Feito");
+                //define a mensagem
+                builder.setMessage("Tem Certeza?");
+                //define um botão como positivo
+                builder.setPositiveButton("Positivo", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
                         itemdao.delete(item);
                         reloadAllData();
                     }
                 });
+                //define um botão como negativo.
+                builder.setNegativeButton("Negativo", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        //nao faz nada
+                    }
+                });
+                //cria o AlertDialog
+                alerta = builder.create();
+                //Exibe
+                alerta.show();
+
             } else {
                 mainViewholder.button.setOnClickListener(new View.OnClickListener() {
                     @Override

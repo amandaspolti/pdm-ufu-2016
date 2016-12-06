@@ -119,6 +119,7 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
             }
 
             mAuthTask = new ItemCadastroTask(item_text, nivelItem, dueDate);
+            Toast.makeText(TelaCadastroItem.this, "Tarefa Cadastrada com Sucesso", Toast.LENGTH_SHORT).show();
             mAuthTask.execute((Void) null);
         }
     }
