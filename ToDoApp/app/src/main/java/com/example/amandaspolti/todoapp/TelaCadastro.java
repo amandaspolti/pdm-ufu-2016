@@ -19,7 +19,6 @@ import android.widget.Toast;
 public class TelaCadastro extends AppCompatActivity {
 
     private UserCadastroTask mAuthTask = null;
-
     // UI references.
     private EditText mEmailView;
     private EditText mPasswordView;

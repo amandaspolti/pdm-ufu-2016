@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.icu.text.MessagePattern.ArgType.SELECT;
+
 /**
  * Created by amandaspolti on 01/12/16.
  */
@@ -30,7 +32,6 @@ public class ItemDAO{
         mTIHelper = TabelaItem.getInstance(c);
         db = mTIHelper.open();
     }
-
 
     public long create(String text, String dueDate, int nivel) {
         ContentValues values = new ContentValues();
@@ -66,7 +67,6 @@ public class ItemDAO{
 
     }
 
-
     public List<String> getAll() {
         List<String> itens = new ArrayList<>();
         Cursor c = db.query(TabelaItem.TABLE_ITENS, columns,
@@ -86,5 +86,18 @@ public class ItemDAO{
         return itens;
     }
 
+    public List<String> getData(){
+        List<String> itens = new ArrayList<>();
+        Cursor c = db.query(TabelaItem.TABLE_ITENS, columns,
+                null, null, null, null, null);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            String data = c.getString(3);
+            itens.add(data);
+            c.moveToNext();
+        }
+        c.close();
+        return itens;
+    }
 }
 

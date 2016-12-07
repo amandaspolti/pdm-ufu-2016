@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.amandaspolti.todoapp"
+    package="com.example.amandaspolti.todoapp">
 
-    >
+    <uses-sdk android:minSdkVersion="16" />
 
-    <uses-sdk android:minSdkVersion="16"></uses-sdk>
+    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <!-- TODO mudar o icone -->
     <application
         android:allowBackup="true"
@@ -29,7 +33,23 @@
         <activity
             android:name=".TelaCadastroItem"
             android:label="Novo Item" />
-        <activity android:name=".TelaSobre"></activity>
+        <activity android:name=".TelaSobre" />
+
+        <service
+            android:name=".NotificationService2"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service android:name=".NotificationService" android:exported="false">
+        </service>
+
+        <receiver android:name=".BootReceiver">
+            <intent-filter>
+                <action android:name="com.example.sample"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

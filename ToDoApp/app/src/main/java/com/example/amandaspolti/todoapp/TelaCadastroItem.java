@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -211,6 +212,7 @@ public class TelaCadastroItem extends AppCompatActivity implements DatePickerDia
     public void onDateSet(DatePicker view, int year, int month, int day) {
         Log.w("DatePicker", "Date = " + year);
         ((EditText) findViewById(R.id.cadastro_item_data)).setText(day + "/" + (month+1) + "/" + year);
+        NotificationService.datas.add(day + "/" + (month+1) + "/" + year);
     }
 
 }

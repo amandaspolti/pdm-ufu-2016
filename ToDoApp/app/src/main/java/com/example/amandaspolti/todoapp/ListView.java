@@ -1,9 +1,13 @@
 package com.example.amandaspolti.todoapp;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,19 +28,24 @@ public class ListView extends AppCompatActivity {
 
     private ImageButton adcItem;
     private MyListAdaper adp;
+    NotificationManager notificationManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        startService(new Intent(this, NotificationService.class));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_com_tasks);
         android.widget.ListView lv = (android.widget.ListView) findViewById(R.id.listview);
 
-        ItemDAO itemdao = ItemDAO.getInstance(ListView.this);
+        final ItemDAO itemdao = ItemDAO.getInstance(ListView.this);
         adp = new MyListAdaper(this, R.layout.list_item, itemdao.getAll());
         lv.setAdapter(adp);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListView.this, (CharSequence) itemdao.getData(), Toast.LENGTH_LONG).show();
                 Toast.makeText(ListView.this, "List item was clicked at " + position,
                         Toast.LENGTH_SHORT).show();
                 //TODO edittar item
@@ -51,9 +60,7 @@ public class ListView extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
     }
-
     @Override
     protected void onResume() {
         reloadAllData();
